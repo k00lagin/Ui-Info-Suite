@@ -224,19 +224,19 @@ namespace UIInfoSuite.UIElements
 
         private void ParseConfigToHighlightedArea(int[][] highlightedLocation, int xPos, int yPos)
         {
-            int xOffset = highlightedLocation.Length / 2;
+            int yOffset = highlightedLocation.Length / 2;
 
             if (_mutex.WaitOne())
             {
                 try
                 {
-                    for (int i = 0; i < highlightedLocation.Length; ++i)
+                    for (int row = 0; row < highlightedLocation.Length; ++row)
                     {
-                        int yOffset = highlightedLocation[i].Length / 2;
-                        for (int j = 0; j < highlightedLocation[i].Length; ++j)
+                        int xOffset = highlightedLocation[row].Length / 2;
+                        for (int col = 0; col < highlightedLocation[row].Length; ++col)
                         {
-                            if (highlightedLocation[i][j] == 1)
-                                _effectiveArea.Add(new Point(xPos + i - xOffset, yPos + j - yOffset));
+                            if (highlightedLocation[row][col] == 1)
+                                _effectiveArea.Add(new Point(xPos + col - xOffset, yPos + row - yOffset));
                         }
                     }
                 }
